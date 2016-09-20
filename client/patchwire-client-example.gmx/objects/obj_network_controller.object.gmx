@@ -28,7 +28,7 @@
             <string>/// Initialize the connection to the server
 
 net_init();
-net_connect('localhost', 3001);
+net_connect('192.168.2.51', 3001);
 
 </string>
           </argument>

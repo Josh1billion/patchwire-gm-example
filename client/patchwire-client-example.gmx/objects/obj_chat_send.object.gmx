@@ -49,8 +49,19 @@ message = "";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Use the keyboard string as what the user will send
-message = keyboard_string;
+            <string>/// Send the currently typed message to the server
+
+if ( gamepad_button_check(0, gp_padr) == 1 &amp;&amp; message != "") {
+    
+    net_cmd_init('chat');
+    net_cmd_add_data('message', message);
+    net_cmd_send();
+    
+    message = "";
+}
+else if (gamepad_button_check(0, gp_padl)) {
+    message += "a";
+}
 </string>
           </argument>
         </arguments>
@@ -75,35 +86,6 @@ message = keyboard_string;
             <kind>1</kind>
             <string>/// Draw the message the user is typing
 draw_text(x, y, message + '|');
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="13">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Send the currently typed message to the server
-net_cmd_init('chat');
-net_cmd_add_data('message', message);
-net_cmd_send();
-
-keyboard_string = "";
-
 </string>
           </argument>
         </arguments>
